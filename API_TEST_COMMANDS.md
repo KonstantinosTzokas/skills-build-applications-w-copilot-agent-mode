@@ -13,9 +13,9 @@
 curl http://localhost:8000/api/
 ```
 
-### 2. Test API Root Endpoint (Codespace - with SSL verification skipped)
+### 2. Test API Root Endpoint (Codespace)
 ```bash
-curl -k https://${CODESPACE_NAME}-8000.app.github.dev/api/
+curl https://${CODESPACE_NAME}-8000.app.github.dev/api/
 ```
 
 ### 3. Get All Activities
@@ -53,9 +53,21 @@ curl http://localhost:8000/api/activities/ | jq
 curl http://localhost:8000/api/activities/1/
 ```
 
-### 10. Test with Codespace URL (SSL skipped)
+### 10. Test with Codespace URL
 ```bash
-curl -k https://${CODESPACE_NAME}-8000.app.github.dev/api/activities/
+curl https://${CODESPACE_NAME}-8000.app.github.dev/api/activities/
+```
+
+## Troubleshooting
+
+### SSL/TLS Certificate Errors
+Codespace endpoints have valid certificates and `curl` should work without any special flags. If you encounter an SSL certificate error (e.g., in unusual network environments), you can temporarily disable TLS verification as a last resort:
+
+> ⚠️ **Warning**: The `-k` / `--insecure` flag disables TLS certificate verification and should **never** be used in production or as a habit. It exposes you to man-in-the-middle attacks. Only use it for local debugging when you understand the risks.
+
+```bash
+# Last resort only — not recommended
+curl -k https://${CODESPACE_NAME}-8000.app.github.dev/api/
 ```
 
 ## How to Run Tests
