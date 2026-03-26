@@ -11,8 +11,6 @@ function Activities() {
 
   useEffect(() => {
     const loadActivities = async () => {
-      console.log('Activities endpoint:', endpoint);
-
       try {
         const response = await fetch(endpoint, requestOptions);
         if (!response.ok) {
@@ -21,7 +19,6 @@ function Activities() {
         const data = await response.json();
         const normalizedActivities = normalizeApiCollection(data);
 
-        console.log('Activities fetched data:', data);
         setActivities(normalizedActivities);
       } catch (fetchError) {
         console.error('Activities fetch failed:', fetchError);
