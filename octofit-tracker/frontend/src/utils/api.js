@@ -28,7 +28,11 @@ function getCodespacesApiBaseUrl() {
     : localApiBaseUrl;
 }
 
-function createApiEndpoint(resourceName) {
+function createApiEndpoint(resourceName, explicitCodespaceEndpoint) {
+  if (explicitCodespaceEndpoint && !explicitCodespaceEndpoint.includes('undefined')) {
+    return explicitCodespaceEndpoint;
+  }
+
   return `${getCodespacesApiBaseUrl()}/${resourceName}/`;
 }
 

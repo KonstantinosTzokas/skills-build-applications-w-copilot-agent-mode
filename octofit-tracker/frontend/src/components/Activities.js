@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { createApiEndpoint, normalizeApiCollection, requestOptions } from '../utils/api';
 
-const endpoint = createApiEndpoint('activities');
+const codespaceEndpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/activities/`;
+const endpoint = createApiEndpoint('activities', codespaceEndpoint);
 
 function Activities() {
   const [activities, setActivities] = useState([]);

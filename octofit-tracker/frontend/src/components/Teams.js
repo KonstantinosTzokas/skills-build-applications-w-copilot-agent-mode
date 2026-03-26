@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { createApiEndpoint, normalizeApiCollection, requestOptions } from '../utils/api';
 
-const endpoint = createApiEndpoint('teams');
+const codespaceEndpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/teams/`;
+const endpoint = createApiEndpoint('teams', codespaceEndpoint);
 
 function Teams() {
   const [teams, setTeams] = useState([]);

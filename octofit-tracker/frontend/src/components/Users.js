@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { createApiEndpoint, normalizeApiCollection, requestOptions } from '../utils/api';
 
-const endpoint = createApiEndpoint('users');
+const codespaceEndpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/users/`;
+const endpoint = createApiEndpoint('users', codespaceEndpoint);
 
 function Users() {
   const [users, setUsers] = useState([]);
