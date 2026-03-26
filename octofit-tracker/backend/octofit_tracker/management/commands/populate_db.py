@@ -1,32 +1,7 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
-from djongo import models
-
 from django.db import connection
-
-class Team(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-    class Meta:
-        app_label = 'octofit_tracker'
-
-class Activity(models.Model):
-    user = models.CharField(max_length=100)
-    activity_type = models.CharField(max_length=100)
-    duration = models.IntegerField()
-    class Meta:
-        app_label = 'octofit_tracker'
-
-class Leaderboard(models.Model):
-    user = models.CharField(max_length=100)
-    points = models.IntegerField()
-    class Meta:
-        app_label = 'octofit_tracker'
-
-class Workout(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    class Meta:
-        app_label = 'octofit_tracker'
+from octofit_tracker.models import Team, Activity, Leaderboard, Workout
 
 class Command(BaseCommand):
     help = 'Populate the octofit_db database with test data'
