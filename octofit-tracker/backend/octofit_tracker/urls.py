@@ -32,9 +32,19 @@ if codespace_name:
 else:
     base_url = "http://localhost:8000"
 
+
+def api_root_with_base_url(request, *args, **kwargs):
+    """
+    Wrapper around views.api_root that attaches the computed base_url
+    to the request object for use in API root responses or documentation.
+    """
+    request.base_url = base_url
+    return views.api_root(request, *args, **kwargs)
+
+
 urlpatterns = [
-    path('', views.api_root, name='api-root'),
+    path('', api_root_with_base_url, name='api-root'),
     path('admin/', admin.site.urls),
-    path('api/', views.api_root, name='api-root-alt'),
+    path('api/', api_root_with_base_url, name='api-root-alt'),
     path('api/', include(router.urls)),
 ]
